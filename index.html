@@ -2,101 +2,69 @@
 <html>
 <head>
 <style>
-  body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .particle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-}
-
-.clock {
-  width: 200px;
-  height: 200px;
-  border: 5px solid #3498db;
-  border-radius: 50%;
-  position: relative;
-}
-
-.hour-hand, .minute-hand, .second-hand {
-  position: absolute;
-  width: 50%;
-  height: 2px;
-  background-color: black;
-  top: 50%;
-  transform-origin: 100%;
-  transform: translate(-100%, -50%);
-}
-
-.hour-hand {
-  background-color: #e74c3c;
-  transform: translate(-100%, -50%) rotate(30deg);
-  animation: rotateHour 43200s linear infinite;
-}
-
-.minute-hand {
-  background-color: #2ecc71;
-  transform: translate(-100%, -50%) rotate(45deg);
-  animation: rotateMinute 3600s linear infinite;
-}
-
-.second-hand {
-  background-color: #3498db;
-  transform: translate(-100%, -50%) rotate(60deg);
-  animation: rotateSecond 60s linear infinite;
-}
-
-.center {
-  width: 10px;
-  height: 10px;
-  background-color: black;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes rotateHour {
-  to {
-    transform: translate(-100%, -50%) rotate(390deg);
+  background: #000;
+  perspective: 200px;
+  i {
+    &:before,
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: radial-gradient(#fff, #fff 10%, rgba(255, 255, 255, 0) 56%);
+      border-radius: 50%;
+      content: "";
+      opacity: 0;
+    }
   }
 }
 
-@keyframes rotateMinute {
-  to {
-    transform: translate(-100%, -50%) rotate(4500deg);
+@for $i from 1 through 30 {
+  .particle {
+    i:nth-child(#{$i}) {
+      &:before {
+        $w: #{random(5) + 10}px;
+        width: $w;
+        height: $w;
+        animation: p#{$i} #{random(5) * 0.2+10}s #{random(10) * -0.6}s infinite;
+      }
+
+      &:after {
+        $w: #{random(6) + 10}px;
+        width: $w;
+        height: $w;
+        animation: p#{$i} #{random(5) * 0.5+10}s #{random(20) * 0.6}s infinite;
+      }
+
+      @keyframes p#{$i} {
+        0% {
+          transform: translate3d(
+            #{(random(800)) * (random(2) * 2-3)}px,
+            #{(random(800)) * (random(2) * 2-3)}px,
+            0
+          );
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(0.6);
+          opacity: 0;
+        }
+      }
+    }
   }
 }
-
-@keyframes rotateSecond {
-  to {
-    transform: translate(-100%, -50%) rotate(3600deg);
-  }
-}
-
-</style>
-  
-<div class="clock">
-    <div class="hour-hand"></div>
-    <div class="minute-hand"></div>
-    <div class="second-hand"></div>
-    <div class="center"></div>
-</br>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-</br>
-</br>
-<marquee behavior="alternate" hspace="30" scrollamount="15"><span style="color:orange;"><h1><b>  ！老師您好，您辛苦了！ </b></h1></span></marquee>
-</br>
-</br>
-<marquee behavior="alternate" hspace="30" scrollamount="15"><font color="blue"><h1><b>  我是5號，2號叫我打的！ </b></h1></font></marquee>
-</br>
-</br>
-<marquee behavior="alternate" hspace="30" scrollamount="15"><font color="#FF0000"><h1><b> ！您的教學，受益良多！  </b></h1></font></marquee>
-</br>
-</br>
-<marquee behavior="alternate" hspace="30" scrollamount="15"><h1><b>  ！！同學們，下課了！！ </b></h1></marquee>
-
+  </style>
+  <div class="particle">
+  - for (i = 1; i <= 30; i++)
+      i
+</div>
 </head>
 </html>
