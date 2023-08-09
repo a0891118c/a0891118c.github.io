@@ -2,7 +2,15 @@
 <html>
 <head>
 <style>
-   i {
+  .particle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  perspective: 200px;
+  i {
     &:before,
     &:after {
       position: absolute;
@@ -13,38 +21,45 @@
       content: "";
       opacity: 0;
     }
-     @for $i from 1 through 30 {
+  }
+}
+
+@for $i from 1 through 30 {
   .particle {
     i:nth-child(#{$i}) {
       &:before {
         $w: #{random(5) + 10}px;
         width: $w;
         height: $w;
-
+        
       }
+
       &:after {
-        $w: #{random(6) + 3}px;
+        $w: #{random(6) + 10}px;
         width: $w;
         height: $w;
+        
+      }
 
+      @keyframes p#{$i} {
+        0% {
+          transform: translate3d(
+            #{(random(800)) * (random(2) * 2-3)}px,
+            #{(random(800)) * (random(2) * 2-3)}px,
+            0
+          );
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(0.6);
+          opacity: 0;
+        }
       }
     }
   }
-}
-       @keyframes p#{$i} {
-    0% {
-      transform: translate3d(
-        #{(random(800) ) * (random(2) * 2-3)}px, #{(random(800) ) * (random(2) * 2-3)}px, 0
-      );
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      transform: translate3d(0, 0, 0) scale(0.6);
-      opacity: 0;
-    }
 }
   
   </style>
