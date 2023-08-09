@@ -1,66 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>告白動畫2</title>
-  <style>
-body {
-  margin: 0;
-  padding: 0;
+<style>
+  body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
   background-color: #f0f0f0;
 }
 
-.container {
-  text-align: center;
+.clock {
+  width: 200px;
+  height: 200px;
+  border: 5px solid #3498db;
+  border-radius: 50%;
   position: relative;
 }
 
-.heart {
-  width: 100px;
-  height: 100px;
-  background-color: #e74c3c;
+.hour-hand, .minute-hand, .second-hand {
   position: absolute;
-  top: -60px;
+  width: 50%;
+  height: 2px;
+  background-color: black;
+  top: 50%;
+  transform-origin: 100%;
+  transform: translate(-100%, -50%);
+}
+
+.hour-hand {
+  background-color: #e74c3c;
+  transform: translate(-100%, -50%) rotate(30deg);
+  animation: rotateHour 43200s linear infinite;
+}
+
+.minute-hand {
+  background-color: #2ecc71;
+  transform: translate(-100%, -50%) rotate(45deg);
+  animation: rotateMinute 3600s linear infinite;
+}
+
+.second-hand {
+  background-color: #3498db;
+  transform: translate(-100%, -50%) rotate(60deg);
+  animation: rotateSecond 60s linear infinite;
+}
+
+.center {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  clip-path: polygon(50% 0%, 100% 34%, 100% 89%, 50% 100%, 0% 89%, 0% 34%);
-  animation: heartBeat 2s ease-in-out infinite;
+  transform: translate(-50%, -50%);
 }
 
-.message {
-  font-family: Arial, sans-serif;
-  font-size: 24px;
-  color: #e74c3c;
-  margin-top: 40px;
-  animation: fadeIn 2s ease-in-out forwards;
-  opacity: 0;
-}
-
-@keyframes heartBeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-@keyframes fadeIn {
+@keyframes rotateHour {
   to {
-    opacity: 1;
+    transform: translate(-100%, -50%) rotate(390deg);
   }
 }
 
-    
-  </style>
+@keyframes rotateMinute {
+  to {
+    transform: translate(-100%, -50%) rotate(4500deg);
+  }
+}
+
+@keyframes rotateSecond {
+  to {
+    transform: translate(-100%, -50%) rotate(3600deg);
+  }
+}
+
+</style>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+</br>
+</br>
+<marquee behavior="alternate" hspace="30" scrollamount="15"><span style="color:orange;"><h1><b>  ！老師您好，您辛苦了！ </b></h1></span></marquee>
+</br>
+</br>
+<marquee behavior="alternate" hspace="30" scrollamount="15"><font color="blue"><h1><b>  我是5號，2號叫我打的！ </b></h1></font></marquee>
+</br>
+</br>
+<marquee behavior="alternate" hspace="30" scrollamount="15"><font color="#FF0000"><h1><b> ！您的教學，受益良多！  </b></h1></font></marquee>
+</br>
+</br>
+<marquee behavior="alternate" hspace="30" scrollamount="15"><h1><b>  ！！同學們，下課了！！ </b></h1></marquee>
+
 </head>
-<body>
-  <div class="container">
-    <div class="heart"></div>
-    <h1 class="message">親愛的 [對方的名字]，我想對你說：</h1>
-  </div>
-</body>
 </html>
