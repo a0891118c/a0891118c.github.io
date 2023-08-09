@@ -1,73 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-  .particle{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  <title>粒子放射動畫</title>
+  <style>
+  body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  background: #000;
-  perspective: 200px;
-  i {
-    &:before,
-    &:after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background: radial-gradient(#fff, #fff 10%, rgba(255, 255, 255, 0) 56%);
-      border-radius: 50%;
-      content: "";
-      opacity: 0;
-    }
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.particle-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  animation: rotate 4s linear infinite;
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #3498db;
+  border-radius: 50%;
+  animation: emit 2s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@for $i from 1 through 30 {
-  .particle {
-    i:nth-child(#{$i}) {
-      &:before {
-        $w: #{random(5) + 10}px;
-        width: $w;
-        height: $w;
-        animation: p#{$i} #{random(5) * 0.2+10}s #{random(10) * -0.6}s infinite;
-      }
-
-      &:after {
-        $w: #{random(6) + 10}px;
-        width: $w;
-        height: $w;
-        animation: p#{$i} #{random(5) * 0.5+10}s #{random(20) * 0.6}s infinite;
-      }
-
-      @keyframes p#{$i} {
-        0% {
-          transform: translate3d(
-            #{(random(800)) * (random(2) * 2-3)}px,
-            #{(random(800)) * (random(2) * 2-3)}px,
-            0
-          );
-          opacity: 0;
-        }
-        10% {
-          opacity: 1;
-        }
-        100% {
-          transform: translate3d(0, 0, 0) scale(0.6);
-          opacity: 0;
-        }
-      }
-    }
+@keyframes emit {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(1);
   }
 }
-  
-  </style>
-  <div class="particle">
-  - for (i = 1; i <= 30; i++)
-      i
-</div>
- <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+</style>
+</head>
+<body>
+  <div class="particle-container">
+    <div class="particle"></div>
+  </div>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 </br>
 </br>
 <marquee behavior="alternate" hspace="30" scrollamount="15"><span style="color:orange;"><h1><b>  ！老師您好，您辛苦了！ </b></h1></span></marquee>
@@ -80,5 +67,6 @@
 </br>
 </br>
 <marquee behavior="alternate" hspace="30" scrollamount="15"><h1><b>  ！！同學們，下課了！！ </b></h1></marquee>
-</head>
+
+</body>
 </html>
