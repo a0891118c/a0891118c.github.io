@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>我的告白情書</title>
+  <title>告白動畫</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
+.container {
+  text-align: center;
+  position: relative;
+}
 
-    h1 {
-      color: #e74c3c;
-    }
+.heart {
+  width: 100px;
+  height: 100px;
+  background-color: #e74c3c;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 0%, 100% 34%, 100% 89%, 50% 100%, 0% 89%, 0% 34%);
+  animation: heartBeat 2s ease-in-out infinite;
+}
 
-    p {
-      line-height: 1.6;
-    }
+.message {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: #e74c3c;
+  margin-top: 40px;
+  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0;
+}
 
-    .signature {
-      margin-top: 20px;
-      font-style: italic;
-    }
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+    
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>親愛的 [對方的名字]，我想對你說：</h1>
-    <p>每次看到你的笑容，我的心情都變得愉快。你的存在就像一束溫暖的陽光，照亮了我生活的每一天。</p>
-    <p>我想告訴你，我對你的感情變得越來越深。無論是歡笑還是困難，我都願意與你一同走過，攜手面對。</p>
-    <p>希望我們的故事能夠繼續，一直走下去。我愿意用一生的時間，去愛你，照顧你，陪伴你。</p>
-    <p>愛你永遠，[你的名字]</p>
-    <p class="signature">[日期]</p>
+    <div class="heart"></div>
+    <h1 class="message">親愛的 [對方的名字]，我想對你說：</h1>
   </div>
 </body>
 </html>
